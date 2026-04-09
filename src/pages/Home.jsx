@@ -3,8 +3,7 @@ import Navbar from "../components/Navbar";
 import Categories from "../categories";
 import Cards from "../components/Cards";
 import { food_items } from "../food";
-import { dataContext } from "../contextApi/UserContext";
-
+import { dataContext } from "../contextApi/UserContext.jsx";
 const Home = () => {
 
   const { Cate, setCate } = useContext(dataContext); // ✅ FIX
@@ -22,12 +21,12 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className="bg-green-50 min-h-screen">
 
       <Navbar />
 
       {/* Categories */}
-      <div className="flex justify-center items-center gap-4">
+      <div className="flex justify-center items-center gap-8 mt-6">
         {Categories.map((item) =>(
           <div className="w-[100px] h-[100px] bg-white flex flex-col justify-center items-center rounded-2xl hover:bg-green-100 hover:cursor-pointer" key={item.id} onClick={() => filter(item.name)}>
             {item.image}
@@ -37,9 +36,14 @@ const Home = () => {
       </div>
 
       {/* Cards */}
-      <div className="flex flex-wrap gap-4 justify-center mt-5">
+      <div className="flex flex-wrap gap-4 justify-center mt-10 pb-10">
         {Cate.map((item)=>(
-          <Cards key={item.id} name={item.food_name} />
+          <Cards  key={item.id} 
+                  name={item.food_name}
+                  image={item.food_image}
+                  price={item.price}
+                  type={item.food_type}
+                  id={item.id}/>
         ))}
       </div>
 
