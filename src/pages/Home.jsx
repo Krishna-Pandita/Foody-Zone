@@ -6,7 +6,7 @@ import { food_items } from "../food";
 import { dataContext } from "../contextApi/UserContext.jsx";
 const Home = () => {
 
-  const { Cate, setCate } = useContext(dataContext); // ✅ FIX
+  const { Cate, setCate, input } = useContext(dataContext); // ✅ FIX
 
   function filter(category){
     if(category === "All"){
@@ -26,14 +26,16 @@ const Home = () => {
       <Navbar />
 
       {/* Categories */}
-      <div className="flex justify-center items-center gap-8 mt-6">
+
+      {!input? <div className="flex justify-center items-center gap-8 mt-6">
         {Categories.map((item) =>(
           <div className="w-[100px] h-[100px] bg-white flex flex-col justify-center items-center rounded-2xl hover:bg-green-100 hover:cursor-pointer" key={item.id} onClick={() => filter(item.name)}>
             {item.image}
             <h3>{item.name}</h3>
           </div>
         ))}
-      </div>
+      </div>:null}
+     
 
       {/* Cards */}
       <div className="flex flex-wrap gap-4 justify-center mt-10 pb-10">
